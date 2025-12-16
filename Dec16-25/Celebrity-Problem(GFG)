@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    int celebrity(vector<vector<int>>& mat) {
+        // code here
+        int n=mat.size();
+        stack<int> st;
+        for(int i=0;i<n;i++){
+            st.push(i);
+        }
+        while(st.size()>=2){
+            int a=st.top();
+            st.pop();
+            int b=st.top();
+            st.pop();
+            
+            if(mat[a][b]==1 && mat[b][a]==0){
+                st.push(b);
+            }
+            else if(mat[a][b]==0 && mat[b][a]==1){
+                st.push(a);
+            }
+        }
+        if(st.empty())
+        return -1;
+        else
+        {
+            int c=st.top();
+            for(int i=0;i<n;i++)
+            {
+                if(i!=c)
+                {
+                    if(mat[c][i]==1 || mat[i][c]==0)
+                    {
+                    return -1;
+                    }
+                }
+            }
+            return c;
+        }
+    }
+};
