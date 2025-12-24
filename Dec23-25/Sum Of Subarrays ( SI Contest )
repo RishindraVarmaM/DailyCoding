@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    long long n;
+    cin >> n;
+    vector<long long> arr(n);
+    for(long long i=0;i<n;i++){
+        cin >> arr[i];
+    }
+    vector<long long> freq(n+1,0);
+    freq[0]=arr[0];
+    for(int i=1;i<n;i++){
+        freq[i]=freq[i-1]+arr[i];
+    }
+
+    long long q;
+    cin >> q;
+    while(q--){
+        long long sum=0;
+        long long i,j;
+        cin >> i >> j;
+        if(i==0)
+        cout << freq[j] << endl;
+        else
+        cout << freq[j]-freq[i-1] << endl;
+    }
+    return 0;
+}
