@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int t;
+    cin >> t;
+    while(t--){
+        string arr;
+        string brr;
+        cin >> arr;
+        cin >> brr;
+        
+        // unordered_map<char,int> freq;
+        // int n=a.size();
+        // for(int i=0;i<n;i++){
+            
+        //     freq[a[i]]++;
+        // }
+        int c=0;
+        int sum=0;
+        int i=0,j=0;
+        int n=arr.size();
+        int m=brr.size();
+        // bool flag=false;
+        // vector<int> crr;
+        while(i<n && j<m){
+            if(arr[i]==brr[j]){
+                c++;
+                i++;
+                j++; 
+            }
+            else{
+                j++;
+            }
+        }
+        if(c==n){
+            cout << "Yes" <<endl;
+        }
+        else{
+            cout << "No" << endl;
+        }
+        
+        
+    }
+    return 0;
+}
