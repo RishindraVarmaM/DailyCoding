@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int t;
+    cin >> t;
+    while(t--){
+        int n,k;
+        cin >> n >> k;
+        vector<int> arr(n);
+        for(int i=0;i<n;i++){
+            cin >> arr[i];
+        }
+        int l=0,r=0,zero=0,maxi=0,len=0;
+        while(r<n){
+            if(arr[r]==0)
+            zero++;
+            if(zero>k){
+                if(arr[l]==0)
+                zero--;
+                l++;
+            }
+            if(zero<=k){
+            len=r-l+1;
+            maxi=max(maxi,len);
+            }
+            r++;
+            
+        }
+        cout << maxi << endl;
+    }
+    
+    
+    
+    
+    return 0;
+}
