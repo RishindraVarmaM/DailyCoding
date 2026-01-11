@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<string> ans;
+    vector<char> curr;
+
+    void recur(int i,int n,int sum){
+
+        if(i==n){
+            
+            if(sum==0){
+                string s="";
+                for(int j=0;j<curr.size();j++){
+                    s+=curr[j];
+                }
+                ans.push_back(s);
+            }
+            return;
+        }
+        if(sum+i<=n){
+        curr.push_back('(');
+        recur(i+1,n,sum+1);
+        curr.pop_back();
+        }
+
+        if(sum>=1){
+            curr.push_back(')');
+            recur(i+1,n,sum-1);
+            curr.pop_back();
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        recur(0,2*n,0);
+        return ans;
+    }
+};
