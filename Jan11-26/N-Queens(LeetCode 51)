@@ -1,0 +1,81 @@
+class Solution {
+public:
+    vector<vector<string>> ans = {};
+    vector<string> chess = {};
+
+    bool isSafe(int r,int c,int n){
+        for(int i=0;i<n;i++){
+            if(chess[r][i]=='Q' || chess[i][c] == 'Q'){
+                return false;
+            }
+        }
+        int R=r;
+        int C=c;
+
+        while(R>=0 && C>=0){
+            if(chess[R][C]=='Q')
+            {
+                return false;
+            }
+            R--;
+            C--;
+        }
+        R=r;
+        C=c;
+         while(R>=0 && C<n){
+            if(chess[R][C]=='Q')
+            {
+                return false;
+            }
+            R--;
+            C++;
+        }
+        R=r;
+        C=c;
+         while(R<0 && C>=0){
+            if(chess[R][C]=='Q')
+            {
+                return false;
+            }
+            R++;
+            C--;
+        }
+        R=r;
+        C=c;
+         while(R<0 && C<n){
+            if(chess[R][C]=='Q')
+            {
+                return false;
+            }
+            R++;
+            C++;
+        }
+        return true;
+
+    }
+    void recur(int row,int n){
+        if(row==n){
+            ans.push_back(chess);
+            return;
+        }
+
+        for(int j=0;j<n;j++){
+            if(isSafe(row,j,n)){
+                chess[row][j]= 'Q';
+                recur(row+1,n);
+                chess[row][j]='.';
+            }
+        }
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        for(int i=0;i<n;i++){
+            string row="";
+            for(int j=0;j<n;j++){
+                row+=".";
+            }
+            chess.push_back(row);
+        }
+        recur(0,n);
+        return ans;
+    }
+};
